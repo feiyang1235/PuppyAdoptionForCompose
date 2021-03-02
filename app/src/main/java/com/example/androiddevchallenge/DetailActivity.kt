@@ -22,16 +22,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Button
-import androidx.compose.material.Text
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,11 +51,11 @@ class DetailActivity : AppCompatActivity() {
         setContent {
             MyTheme(darkTheme = false) {
                 Surface(
-                    color = MaterialTheme.colors.background, modifier = Modifier
+                    color = MaterialTheme.colors.background,
+                    modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                )
-                {
+                ) {
                     DetailLayout(this@DetailActivity, puppy)
                 }
             }

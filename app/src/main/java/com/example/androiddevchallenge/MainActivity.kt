@@ -53,18 +53,21 @@ class MainActivity : AppCompatActivity() {
     private val puppyList = mutableListOf<PuppyBean>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.puppyList.observe(this, Observer {
-            setContent {
-                MyTheme(darkTheme = false) {
-                    MyApp(it) { id ->
-                        val puppy = getPuppyById(it, id)
-                        puppy?.let { puppy ->
-                            gotoDetail(puppy)
+        viewModel.puppyList.observe(
+            this,
+            Observer {
+                setContent {
+                    MyTheme(darkTheme = false) {
+                        MyApp(it) { id ->
+                            val puppy = getPuppyById(it, id)
+                            puppy?.let { puppy ->
+                                gotoDetail(puppy)
+                            }
                         }
                     }
                 }
             }
-        })
+        )
         viewModel.getPuppyList()
     }
 
@@ -87,8 +90,7 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp(puppyList: List<PuppyBean> = mutableListOf(), itemClick: (id: Int) -> Unit = {}) {
-    Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxWidth())
-    {
+    Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxWidth()) {
         LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
             items(puppyList) {
                 ItemView(it, itemClick)
@@ -115,19 +117,25 @@ fun ItemView(puppy: PuppyBean, itemClick: (id: Int) -> Unit) {
                 .width(150.dp)
                 .height(150.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .constrainAs(image) { top.linkTo(parent.top, margin = 10.dp) })
-
-        Text(
-            text = puppy.name, modifier = Modifier.constrainAs(nameText) {
-                top.linkTo(parent.top, margin = 10.dp)
-                start.linkTo(image.end, margin = 10.dp)
-            }, style = TextStyle(fontWeight = FontWeight.Bold)
+                .constrainAs(image) { top.linkTo(parent.top, margin = 10.dp) }
         )
 
-        Text(puppy.subtitle, Modifier.constrainAs(subtitle) {
-            top.linkTo(nameText.bottom, margin = 2.dp)
-            start.linkTo(image.end, margin = 10.dp)
-        })
+        Text(
+            text = puppy.name,
+            modifier = Modifier.constrainAs(nameText) {
+                top.linkTo(parent.top, margin = 10.dp)
+                start.linkTo(image.end, margin = 10.dp)
+            },
+            style = TextStyle(fontWeight = FontWeight.Bold)
+        )
+
+        Text(
+            puppy.subtitle,
+            Modifier.constrainAs(subtitle) {
+                top.linkTo(nameText.bottom, margin = 2.dp)
+                start.linkTo(image.end, margin = 10.dp)
+            }
+        )
     }
 }
 
