@@ -13,7 +13,7 @@ class MainViewModel : ViewModel() {
                 "Golden hair",
                 R.drawable.golden,
                 "She sat in the darkened room waiting. It was now a standoff. He had the power to put her in the room, but not the power to make her repent. It wasn't fair and no matter how long she had to endure the darkness, she wouldn't change her attitude. At three years old, Sandy's stubborn personality had already bloomed into full view.",
-            "If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence"
+                "If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence"
             )
         )
         puppys.add(

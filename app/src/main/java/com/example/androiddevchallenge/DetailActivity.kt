@@ -58,7 +58,7 @@ fun DetailLayout(activity: AppCompatActivity, puppy: PuppyBean) {
         Modifier
             .padding(10.dp)
     ) {
-        Button(onClick = { activity.finish() },modifier = Modifier.padding(bottom = 30.dp)) {
+        Button(onClick = { activity.finish() }, modifier = Modifier.padding(bottom = 30.dp)) {
             Text("back", style = MaterialTheme.typography.button)
         }
 

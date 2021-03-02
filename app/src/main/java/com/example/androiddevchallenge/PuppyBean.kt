@@ -9,5 +9,5 @@ data class PuppyBean(
     @DrawableRes
     val resId: Int,
     val detail: String,
-    val subtitle:String
-):Serializable
+    val subtitle: String
+) : Serializable
