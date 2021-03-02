@@ -43,8 +43,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
-class DetailsActivity : AppCompatActivity() {
-
+class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,41 +56,36 @@ class DetailsActivity : AppCompatActivity() {
                         .fillMaxHeight()
                 )
                 {
-                    DetailLayout(this@DetailsActivity, puppy)
+                    DetailLayout(this@DetailActivity, puppy)
                 }
             }
         }
     }
 }
 
-
 @Composable
 fun DetailLayout(activity: AppCompatActivity, puppy: PuppyBean) {
     val buttonStatus = remember { mutableStateOf(true) }
-
     Column(
         Modifier
             .padding(10.dp)
     ) {
         Button(onClick = { activity.finish() }, modifier = Modifier.padding(bottom = 30.dp)) {
-            Text("back", style = MaterialTheme.typography.button)
-        }
-
-        Button(
-            onClick = {
-                buttonStatus.value = !buttonStatus.value
-            },
-            enabled = buttonStatus.value,
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = if (buttonStatus.value) MaterialTheme.colors.primary else Color.Gray
+            Text(
+                "back",
+                style = MaterialTheme.typography.button
             )
+        }
+        Button(
+            onClick = { buttonStatus.value = !buttonStatus.value },
+            enabled = buttonStatus.value,
+            colors = ButtonDefaults.buttonColors(backgroundColor = if (buttonStatus.value) MaterialTheme.colors.primary else Color.Gray)
         ) {
             Text(
                 if (buttonStatus.value) "Adpot it" else "Thank you",
                 style = MaterialTheme.typography.button
             )
         }
-
         SubDetailLayout(puppy)
     }
 }
@@ -99,31 +93,28 @@ fun DetailLayout(activity: AppCompatActivity, puppy: PuppyBean) {
 @Composable
 fun SubDetailLayout(puppy: PuppyBean) {
     val state = rememberScrollState()
-
     Column(
         Modifier
             .padding(20.dp)
             .verticalScroll(state),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         val imagePainter = painterResource(puppy.resId)
         Image(
-            imagePainter, "",
+            imagePainter,
+            "",
             Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .clip(RoundedCornerShape(4.dp))
         )
-
         Text(
             puppy.name,
             style = MaterialTheme.typography.h5
         )
         Text(
             puppy.detail,
-            Modifier
-                .padding(top = 2.dp)
+            Modifier.padding(top = 2.dp)
         )
     }
 }
